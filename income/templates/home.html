@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>*{
+   margin: 0;
+   padding: 0;
+}
+.section h1{
+    text-align: center;
+    color: red;
+    padding-top: 160px;
+    font-size: 70px;
+}
+.container{
+    margin:0;
+    /* box-sizing: border-box; */
+    font-family: 'Times New Roman', Times, serif;
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: inset;
+
+    position: fixed;
+     background-color: rgba(255, 192, 203, 0.5);
+            backdrop-filter: blur(40px);
+}
+
+.logo{
+     margin-left:45px ;
+    margin-right:21cm;
+/* <!--    margin-top: 2px;--> */
+    margin-bottom: 5px;
+    display:flex;
+    color:blue;
+}
+.logo h1{
+     margin-top:15px;
+}
+
+.link{
+     margin-right:54px;
+     margin-bottom:5px;
+/* <!--     margin-top:2px;--> */
+     justify-content:space-between;
+     color:green;
+     display:flex;
+
+}
+.link button{
+     background-color:gray;
+     border: 2px solid white;
+     text-align:center;
+     font-size:16px;
+     padding:10px 20px;
+     border-radius: 14px;
+     color:white;
+}
+.container h2{
+    text-align: center;
+    color: blue;
+}
+.section1{
+    text-align: center;
+}
+.section2{
+    padding:50px 8cm 50px 8cm;
+          text-align:justify;
+}
+.section1 button{
+    background-color: green;
+    padding:15px 735px
+}
+.section3{
+display:flex;
+justify-content:space-between;
+background-color:gray;
+color:blue;
+padding:0px;
+text-align:center;
+}
+.links{
+   margin:25px 5px 25px 100px;
+}
+.contacts{
+  margin:25px 100px 25px 5px;
+}
+.copy{
+ margin-top:150px
+}
+        .section{
+
+          padding:50px 8cm 50px 8cm;
+          text-align:justify;
+        }
+       .img1{
+           text-align:center;
+           padding-top:5%;
+           padding-bottom:50%;
+       }
+        .one{
+        display:flex;
+        text-align:center;
+        justify-content: space-between;
+        padding:50px 8cm 20px 8cm;
+        }
+        .two{
+        display:flex;
+        text-align:center;
+        justify-content: space-between;
+        padding:50px 8cm 50px 8cm;
+        }
+</style>
+    {% load static %}
+    <link href="{% static 'style/home.css' %}" rel="stylesheet">
+</head>
+<body>
+<form method="post">
+ {% csrf_token %}
+    <script scr="{% static '/home.css' %}"></script>
+    <form class="container">
+        <div class="header">
+            <div class="logo">
+                <h1>PKCAISKJIP</h1>
+             </div>
+
+            <div class="link">
+
+                <form action="{% url 'home_page' %}" method="get">
+                <button>About</button>
+                   </form>
+
+                 <form action="{% url 'login' %}" method="get">
+                <button>Log Out</button>
+                         </form>
+                <form action="{% url 'login' %}" method="get">
+                <button>Points</button>
+                         </form>
+                <form action="{% url 'login' %}" method="get">
+                <button>Offers</button>
+                         </form>
+                <form action="{% url 'login' %}" method="get">
+                <button>Details</button>
+                         </form>
+            </div>
+
+        </div>
+
+        <div class="img1">
+            <form method="post">
+<!--            {{ form.as_table }}-->
+                <table border="5">
+                    <thead>
+                    <tr>
+                        <th>SI No</th>
+                        <th>Name</th>
+                        <th>Left/Right customer</th>
+                        <th>Points</th>
+                        <th>Level</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for login in logins %}
+                    <tr>
+                        <td>{{ login.si_number }}</td>
+                        <td>{{ login.name }}</td>
+                        <td>{% if forloop.counter|divisibleby:2 %}L{% else %}R{% endif %}</td>
+                        <td>{{ login.points }}</td>
+                        <td>{% if '_reborn' in user.name %}Reborn{% endif %}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+            </form>
+
+            </div>
+        <div class="section">
+
+        <div class="section3">
+
+
+
+
+
+
+            <div class="links">
+            <h3>Qiuck Links</h3>
+
+                <a href="#">Home</a><br>
+                <a href="#">About Us</a><br>
+                <a href="#">Departments</a><br>
+                <a href="#">Fecilities & services</a><br>
+                <a href="#">Careers</a><br>
+                <a href="#">Customer Information</a><br>
+            </div>
+            <div class="copy">
+                <p>@copyright</p>
+            </div>
+           <div class="contacts">
+            <h3>Quick Contacts</h3>
+            <p>Lorem, ipsum dolor sit <br>amet consectetur adipisicing elit.<br> Cupiditate, odit?<br> Ph : 158744963<br> Email : syv@457.eknm.in</p>
+
+
+            </div>
+
+           </div>
+        </div>
+        </form>
+    </form>
+
+</body>
+</html>
